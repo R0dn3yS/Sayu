@@ -63,12 +63,12 @@ export default class HilowCommand extends Command {
     });
 
     function gameWin(winAmount: number) {
-      ctx.channel.send(`You won \`${win}\`, your balance is now \`${user[0].money - betAmount + winAmount}\``);
+      ctx.channel.send(`The number was: \`${target}\`\n\nYou won \`${win}\`, your balance is now \`${user[0].money - betAmount + winAmount}\``);
       db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money - betAmount + winAmount, ctx.author.id);
     }
 
     function gameLoss() {
-      ctx.channel.send(`You lost \`${betAmount}\`, your balance is now \`${user[0].money - betAmount}\``);
+      ctx.channel.send(`The number was: \`${target}\`\n\nYou lost \`${betAmount}\`, your balance is now \`${user[0].money - betAmount}\``);
     }
   }
 }

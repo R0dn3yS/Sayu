@@ -109,6 +109,22 @@ client.on('messageCreate', message => {
   }
 });
 
+client.on('messageCreate', message => {
+  if (Math.floor(Math.random() * 50) === 1) {
+    const increaseAmount = Math.ceil(Math.random() * 20);
+
+    // deno-lint-ignore no-explicit-any
+    const user: any[] = db.prepare('SELECT * FROM wallets WHERE id = ?').all(message.author.id);
+
+    db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money + increaseAmount, message.author.id);
+
+    message.channel.send(`Added \`${increaseAmount}\` to ${message.author}'s balance, their balance is now \`${user[0].money + increaseAmount}\``).then(m => {
+      delay(2500);
+      m.delete();
+    });
+  }
+});
+
 client.on('messageDelete', (message) => {
   const channel = message.channel as TextChannel;
 
