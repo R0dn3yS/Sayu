@@ -13,7 +13,7 @@ export default class HilowCommand extends Command {
     const user: any[] = db.prepare('SELECT * FROM wallets WHERE id = ?').all(ctx.author.id);
 
     if (Number.isNaN(betAmount) || betAmount < 5) return ctx.channel.send('That\'s not a valid bet amount.');
-    if (user[0].money < betAmount) return ctx.channel.send('You do not have anough money.');
+    if (user[0].money < betAmount) return ctx.channel.send('You do not have enough money.');
 
     const win = Math.floor(betAmount * 1.5);
     const exact = betAmount * 3;
