@@ -48,7 +48,7 @@ client.once('ready', () => {
 });
 
 client.once('ready', async () => {
-  db.exec('CREATE TABLE IF NOT EXISTS wallets (id TEXT PRIMARY KEY, money INTEGER)');
+  db.exec('CREATE TABLE IF NOT EXISTS wallets (id TEXT PRIMARY KEY NOT NULL, money INTEGER NOT NULL)');
 
   // deno-lint-ignore no-explicit-any
   const result: any[] = db.prepare('SELECT id FROM wallets').all();
