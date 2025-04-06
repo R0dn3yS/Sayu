@@ -118,8 +118,8 @@ client.on('messageCreate', message => {
 
     db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money + increaseAmount, message.author.id);
 
-    message.channel.send(`Added \`${increaseAmount}\` to ${message.author}'s balance, their balance is now \`${user[0].money + increaseAmount}\``).then(m => {
-      delay(2500);
+    message.channel.send(`Added \`${increaseAmount}\` to ${message.author}'s balance, their balance is now \`${user[0].money + increaseAmount}\``).then(async m => {
+      await delay(2500);
       m.delete();
     });
   }
