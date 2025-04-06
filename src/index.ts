@@ -13,6 +13,7 @@ const client = new CommandClient({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildVoiceStates,
@@ -81,7 +82,7 @@ client.on('messageCreate', message => {
 client.on('messageDelete', (message) => {
   const channel = message.channel as TextChannel;
 
-  if (channel.name === 'quotes') return;
+  if (channel.name === 'quotes' || channel.name === 'bot-spam') return;
   if (message.content!.length > 1000) return;
 
   const dLog = message.guild?.channels.resolve('790787179663196191') as TextChannel;
@@ -101,6 +102,8 @@ client.on('messageDelete', (message) => {
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
   const channel = oldMessage.channel as TextChannel;
+
+  if (channel.name === 'bot-spam') return;
 
   if (oldMessage.content === newMessage.content) return;
   if (oldMessage.content!.length + newMessage.content!.length > 1000) return;
