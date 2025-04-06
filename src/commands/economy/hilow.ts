@@ -16,7 +16,7 @@ export default class HilowCommand extends Command {
     if (user[0].money < betAmount) return ctx.channel.send('You do not have enough money.');
 
     const win = Math.floor(betAmount * 1.5);
-    const exact = betAmount * 3;
+    const exact = betAmount * 6;
 
     db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money - betAmount, ctx.author.id);
 
