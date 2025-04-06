@@ -16,7 +16,7 @@ export default class PlayCommand extends Command {
 
     player.joinVoice(channel);
 
-    ctx.channel.send(`"**${track.getTitle()}** is added to the queue!`);
+    ctx.channel.send(`"**${track.getTitle()}**" is added to the queue!`);
 
     player.playNext();
   }
