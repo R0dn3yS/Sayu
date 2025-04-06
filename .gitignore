@@ -1,3 +1,5 @@
 .vscode
 .env
 .musicCache
+node_modules
+sayu.db

@@ -1,4 +1,5 @@
-import { Command, CommandContext, Message, MessageReaction, User } from '../../../deps.ts';
+import { Message, MessageReaction, User } from 'discord.js';
+import { Command, CommandContext } from '../../../deps.ts';
 import { delay } from '../../utils/delay.ts';
 
 export default class TictactoeCommand extends Command {

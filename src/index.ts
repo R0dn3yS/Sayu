@@ -1,5 +1,10 @@
-import { ActivityType, AudioPlayerStatus, CommandClient, config, EmbedBuilder, Player, stripIndents, TextChannel, VoiceBasedChannel } from '../deps.ts';
-import { GatewayIntentBits } from '../deps.ts';
+import { ActivityType, EmbedBuilder, GatewayIntentBits, TextChannel, VoiceBasedChannel } from 'discord.js';
+import { AudioPlayerStatus } from '@discordjs/voice';
+import { config } from 'dotenv';
+import { stripIndents } from 'common-tags';
+import { DatabaseSync } from 'node:sqlite';
+import { CommandClient, Player } from '../deps.ts'
+
 import { delay } from './utils/delay.ts';
 
 config();
@@ -25,6 +30,7 @@ client.commands.loader.loadDirectory('./src/commands', {
 });
 
 export const player = new Player(client);
+export const db = new DatabaseSync('sayu.db');
 
 client.once('ready', () => {
   console.log(`${client.user?.username} is ready on ${client.guilds.cache.size} servers.`);

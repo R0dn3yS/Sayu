@@ -1,0 +1,12 @@
+{
+  "nodeModulesDir": "auto",
+  "tasks": {
+    "start": "deno run -A src/index.ts"
+  },
+  "imports": {
+    "@discordjs/voice": "npm:@discordjs/voice@0.18.0",
+    "common-tags": "npm:common-tags@1.8.2",
+    "discord.js": "npm:discord.js@14.18.0",
+    "dotenv": "npm:dotenv@16.4.7"
+  }
+}
