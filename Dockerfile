@@ -10,4 +10,5 @@ RUN deno cache src/index.ts
 
 RUN pacman -Sy yt-dlp ffmpeg --noconfirm
 RUN deno install
-RUN deno task start
+
+CMD [ "deno", "run", "-A", "src/index.ts" ]
