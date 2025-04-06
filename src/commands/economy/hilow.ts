@@ -8,14 +8,17 @@ export default class HilowCommand extends Command {
   override description = 'Shows wallet balance';
 
   override execute(ctx: CommandContext) {
-    const cost = 5;
-    const win = 7;
-    const exact = 15;
-
+    const betAmount = parseInt(ctx.args[0]);
     // deno-lint-ignore no-explicit-any
     const user: any[] = db.prepare('SELECT * FROM wallets WHERE id = ?').all(ctx.author.id);
 
-    db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money - cost, ctx.author.id);
+    if (Number.isNaN(betAmount) || betAmount < 5) return ctx.channel.send('That\'s not a valid bet amount.');
+    if (user[0].money < betAmount) return ctx.channel.send('You do not have anough money.');
+
+    const win = Math.floor(betAmount * 1.5);
+    const exact = betAmount * 3;
+
+    db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money - betAmount, ctx.author.id);
 
     const initial = Math.floor(Math.random() * 10) + 1;
     const target = Math.floor(Math.random() * 10) + 1;
@@ -29,10 +32,9 @@ export default class HilowCommand extends Command {
       switch (m.content) {
         case 'higher': {
           if (target > initial) {
-            ctx.channel.send(`You won, your balance is now \`${user[0].money - cost + win}\``);
-            db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money - cost + win, ctx.author.id);
+            gameWin(win);
           } else {
-            ctx.channel.send(`You lost, your balance is now \`${user[0].money - cost}\``);
+            gameLoss();
           }
 
           break;
@@ -40,10 +42,9 @@ export default class HilowCommand extends Command {
 
         case 'lower': {
           if (target < initial) {
-            ctx.channel.send(`You won, your balance is now \`${user[0].money - cost + win}\``);
-            db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money - cost + win, ctx.author.id);
+            gameWin(win);
           } else {
-            ctx.channel.send(`You lost, your balance is now \`${user[0].money - cost}\``);
+            gameLoss();
           }
 
           break;
@@ -51,15 +52,23 @@ export default class HilowCommand extends Command {
 
         case 'exact': {
           if (target === initial) {
-            ctx.channel.send(`You won, your balance is now \`${user[0].money - cost + exact}\``);
-            db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money - cost + exact, ctx.author.id);
+            gameWin(exact);
           } else {
-            ctx.channel.send(`You lost, your balance is now \`${user[0].money - cost}\``);
+            gameLoss();
           }
 
           break;
         }
       }
     });
+
+    function gameWin(winAmount: number) {
+      ctx.channel.send(`You won \`${win}\`, your balance is now \`${user[0].money - betAmount + winAmount}\``);
+      db.prepare('UPDATE wallets SET money = ? WHERE id = ?').run(user[0].money - betAmount + winAmount, ctx.author.id);
+    }
+
+    function gameLoss() {
+      ctx.channel.send(`You lost \`${betAmount}\`, your balance is now \`${user[0].money - betAmount}\``);
+    }
   }
 }
