@@ -30,7 +30,7 @@ client.commands.loader.loadDirectory('./src/commands', {
 });
 
 export const player = new Player(client);
-export const db = new DatabaseSync('sayu.db');
+export const db = new DatabaseSync(Deno.env.get('DB_PATH') ?? './sayu.db');
 
 client.once('ready', () => {
   console.log(`${client.user?.username} is ready on ${client.guilds.cache.size} servers.`);
