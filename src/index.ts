@@ -13,7 +13,7 @@ let memberCount: number;
 let countChannel: VoiceBasedChannel;
 
 const client = new CommandClient({
-  prefix: '\\',
+  prefix: Deno.env.get('PREFIX') ?? '\\',
   owners: [ '325254775828512778', '125930667795152896' ],
   intents: [
     GatewayIntentBits.Guilds,
@@ -45,6 +45,30 @@ client.once('ready', () => {
   countChannel = client.channels.resolve('947819208518008874') as VoiceBasedChannel;
   memberCount = countChannel.guild.memberCount;
   countChannel.edit({ name: `Members: ${memberCount}` });
+});
+
+client.once('ready', async () => {
+  db.exec('CREATE TABLE IF NOT EXISTS wallets (id TEXT PRIMARY KEY, money INTEGER)');
+
+  // deno-lint-ignore no-explicit-any
+  const result: any[] = db.prepare('SELECT id FROM wallets').all();
+
+  const list = await client.guilds.cache.get('486410117961744384')?.members.fetch() ?? [];
+
+  for (const member of list) {
+    if (member[1].user.bot) continue;
+    let inList = false;
+
+    for (const entry of result) {
+      if (entry.id === member[0]) {
+        inList = true;
+      }
+    }
+
+    if (inList) continue;
+
+    db.prepare('INSERT INTO wallets (id, money) VALUES (?, ?)').run(member[0], 100);
+  }
 });
 
 client.on('messageCreate', async message => {
