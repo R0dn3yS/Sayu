@@ -14,7 +14,7 @@ let countChannel: VoiceBasedChannel;
 
 const client = new CommandClient({
   prefix: '\\',
-  owners: [ '325254775828512778' ],
+  owners: [ '325254775828512778', '125930667795152896' ],
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
