@@ -110,6 +110,8 @@ client.on('messageCreate', message => {
 });
 
 client.on('messageCreate', message => {
+  if (message.author.bot) return;
+
   if (Math.floor(Math.random() * 50) === 1) {
     const increaseAmount = Math.ceil(Math.random() * 20);
 
