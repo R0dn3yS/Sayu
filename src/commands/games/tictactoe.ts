@@ -38,7 +38,7 @@ export default class TictactoeCommand extends Command {
 
       const boardMessage = await ctx.channel.send('⬜⬜⬜\n⬜⬜⬜\n⬜⬜⬜');
 
-      const filter = (m: Message) => m.author.id === currentPlayer.id && m.content.length === 1 && parseInt(m.content).toString() === m.content;
+      const filter = (m: Message) => m.author.id === currentPlayer.id && m.content.length === 1 && parseInt(m.content).toString() === m.content && m.content !== '0';
       const gameCollector = ctx.channel.createMessageCollector({ filter, time: 300000 });
 
       gameCollector.on('collect', m => {

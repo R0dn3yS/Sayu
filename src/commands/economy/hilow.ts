@@ -25,11 +25,11 @@ export default class HilowCommand extends Command {
 
     ctx.channel.send(`Number is ${initial}, type "higher", "lower" or "exact" to guess.`);
 
-    const filter = (m: Message) => m.author.id === ctx.author.id && ['higher', 'lower', 'exact'].includes(m.content);
+    const filter = (m: Message) => m.author.id === ctx.author.id && ['higher', 'lower', 'exact'].includes(m.content.toLowerCase());
     const game = ctx.channel.createMessageCollector({ filter, time: 15000 });
 
     game.once('collect', m => {
-      switch (m.content) {
+      switch (m.content.toLowerCase()) {
         case 'higher': {
           if (target > initial) {
             gameWin(win);
