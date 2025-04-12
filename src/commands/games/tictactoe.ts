@@ -80,7 +80,7 @@ export default class TictactoeCommand extends Command {
 
         function winner() {
           ctx.channel.send(`${currentPlayer} has won!`);
-          playerCollector.stop();
+          gameCollector.stop();
         }
 
         currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
@@ -88,7 +88,7 @@ export default class TictactoeCommand extends Command {
 
         if (turn === 9) {
           ctx.channel.send(`It's a draw.`);
-          playerCollector.stop();
+          gameCollector.stop();
         }
       });
     });
