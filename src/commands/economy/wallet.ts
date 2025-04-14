@@ -9,9 +9,8 @@ export default class WalletCommand extends Command {
   override execute(ctx: CommandContext) {
     const user = ctx.message.mentions.users.first() ?? ctx.author;
 
-    // deno-lint-ignore no-explicit-any
-    const result: any[] = db.prepare('SELECT * FROM wallets WHERE id = ?').all(user.id);
+    const result = db.prepare('SELECT * FROM wallets WHERE id = ?').get(user.id) as { id: string, money: number };
 
-    ctx.channel.send(`${user}'s balance is: \`${result[0].money}\``);
+    ctx.channel.send(`${user}'s balance is: \`${result.money}\``);
   }
 }
