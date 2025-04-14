@@ -1,4 +1,4 @@
-import { EmbedBuilder } from "discord.js";
+import { EmbedBuilder } from 'discord.js';
 import { stripIndents } from 'common-tags';
 import { Command, CommandContext } from '../../../deps.ts';
 import { db } from '../../index.ts';
