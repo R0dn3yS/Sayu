@@ -22,6 +22,7 @@ const client = new CommandClient({
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.DirectMessages,
   ]
 });
 
