@@ -23,7 +23,7 @@ export default class HilowCommand extends Command {
     const initial = Math.floor(Math.random() * 10) + 1;
     const target = Math.floor(Math.random() * 10) + 1;
 
-    ctx.channel.send(`Number is ${initial}, type "higher", "lower" or "exact" to guess.`);
+    ctx.channel.send(`Number is \`${initial}\`, type "higher", "lower" or "exact" to guess.`);
 
     const filter = (m: Message) => m.author.id === ctx.author.id && ['higher', 'lower', 'exact'].includes(m.content.toLowerCase());
     const game = ctx.channel.createMessageCollector({ filter, time: 15000 });
