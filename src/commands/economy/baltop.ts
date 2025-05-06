@@ -8,14 +8,14 @@ export default class BaltopCommand extends Command {
   override category = 'economy';
   override description = 'Returns the leaderboard';
 
-  override execute(ctx: CommandContext) {
+  override async execute(ctx: CommandContext) {
     // deno-lint-ignore no-explicit-any
     const result: any[] = db.prepare('SELECT * FROM wallets ORDER BY money DESC LIMIT 10').all();
 
     let description = '';
 
     for (let i = 0; i < result.length; i++) {
-      description += `${i + 1}. ${ctx.guild?.members.resolve(result[i].id)}: ${result[i].money}\n`
+      description += `${i + 1}. ${await ctx.guild?.members.fetch(result[i].id)}: ${result[i].money}\n`
     }
 
     const balEmbed = new EmbedBuilder()
