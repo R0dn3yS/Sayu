@@ -14,9 +14,16 @@ export default class BaltopCommand extends Command {
 
     let description = '';
 
+    console.log(result);
+
     for (let i = 0; i < result.length; i++) {
+      const r = ctx.guild?.members.resolve(result[i].id);
+      if (!r) continue;
+
       description += `${i + 1}. ${await ctx.guild?.members.fetch(result[i].id)}: ${result[i].money}\n`
     }
+
+    console.log('pass');
 
     const balEmbed = new EmbedBuilder()
       .setTitle('Balance Top')
