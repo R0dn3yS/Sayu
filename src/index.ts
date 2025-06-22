@@ -14,7 +14,7 @@ let countChannel: VoiceBasedChannel;
 
 const client = new CommandClient({
   prefix: Deno.env.get('PREFIX') ?? '\\',
-  owners: [ '325254775828512778', '125930667795152896' ],
+  owners: [ '325254775828512778', '125930667795152896', '245592600793317377' ],
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
