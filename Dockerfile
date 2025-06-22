@@ -1,6 +1,6 @@
 FROM archlinux:latest
 
-COPY --from=denoland/deno:bin-2.2.8 /deno /usr/local/bin/deno
+COPY --from=denoland/deno:bin-2.3.6 /deno /usr/local/bin/deno
 
 WORKDIR /app
 
