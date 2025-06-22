@@ -1,6 +1,6 @@
 import { Message, MessageReaction, User } from 'discord.js';
 import { Command, CommandContext } from '../../../deps.ts';
-import { shuffle } from '../../utils/delay.ts';
+import { shuffle } from '../../utils/shuffle.ts';
 import { db } from "../../index.ts";
 
 export default class TictactoeCommand extends Command {
