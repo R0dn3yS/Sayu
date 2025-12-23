@@ -38,7 +38,7 @@ client.once('ready', () => {
 
   client.user?.setPresence({
     activities: [{
-      name: 'over you',
+      name: 'watching over you',
       type: ActivityType.Watching
     }],
   });
