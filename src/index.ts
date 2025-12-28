@@ -128,6 +128,18 @@ client.on('messageCreate', message => {
   }
 });
 
+client.on('messageCreate', message => {
+  if (message.author.bot) return;
+
+  for (const arg of message.content.split(' ')) {
+    if (arg.startsWith('[') && arg.endsWith(']')) {
+      const digits = arg.split('[')[1].replaceAll(']', '');
+
+      message.channel.send(`https://nhentai.net/g/${digits}`);
+    }
+  }
+});
+
 client.on('messageDelete', (message) => {
   const channel = message.channel as TextChannel;
 
