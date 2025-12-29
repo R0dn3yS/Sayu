@@ -33,7 +33,7 @@ client.commands.loader.loadDirectory('./src/commands', {
 export const player = new Player(client);
 export const db = new DatabaseSync(Deno.env.get('DB_PATH') ?? './sayu.db');
 
-client.once('ready', () => {
+client.once('clientReady', () => {
   console.log(`${client.user?.username} is ready on ${client.guilds.cache.size} servers.`);
 
   client.user?.setPresence({
@@ -48,7 +48,7 @@ client.once('ready', () => {
   countChannel.edit({ name: `Members: ${memberCount}` });
 });
 
-client.once('ready', async () => {
+client.once('clientReady', async () => {
   db.exec('CREATE TABLE IF NOT EXISTS wallets (id TEXT PRIMARY KEY NOT NULL, money INTEGER NOT NULL)');
 
   // deno-lint-ignore no-explicit-any
