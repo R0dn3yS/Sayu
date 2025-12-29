@@ -186,6 +186,19 @@
       "integrity": "sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg=="
     }
   },
+  "remote": {
+    "https://raw.githubusercontent.com/R0dn3yS/discord-music/0a5bb167fb396e62012417955d4d9f415c02f821/classes/player.ts": "f887655b582dc3c12b12c140715ca2592a5b2676f6f34069c2773b4b155610bd",
+    "https://raw.githubusercontent.com/R0dn3yS/discord-music/0a5bb167fb396e62012417955d4d9f415c02f821/classes/queue.ts": "66223e0356d3fb1920c1d5b74c3ba996e94004fef51a24d21cb6ecbbd0ac93e4",
+    "https://raw.githubusercontent.com/R0dn3yS/discord-music/0a5bb167fb396e62012417955d4d9f415c02f821/classes/track.ts": "b4123bfb353970d59c90d36ce7e95112cc3995e34513d18dbb16f561a255d35b",
+    "https://raw.githubusercontent.com/R0dn3yS/discord-music/0a5bb167fb396e62012417955d4d9f415c02f821/index.ts": "c6afe2f2af2a5b746e79fbff70b0c1038e20248600277a20cfc7542500d6c8c7",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/command.ts": "b43c8191dd155b50bacc7055e87308d707ca777fcc27540bef2ae9953d8da34f",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/commandclient.ts": "5f05cdbfdd7763d73f5fa15a9d803fb82ed87df7d12a7e916834751ba7d10b44",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/commandcontext.ts": "b1e654801fc09e24cf39739f25d97b51a4bee552892d5cd22df859e76ea4ab6b",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/commandsloader.ts": "6e587eb2eb25d1f42101ef373230f436b6a107af1456cb0cf269ab184c2f8d80",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/commandsmanager.ts": "cfa046132be7b1468f9f3e1922976d27b8a205a0e7381a2c03270fa889208593",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/deps.ts": "600c4410702e30306d3299ea25f9374e1c9c3485f32ae6f3bb517012079df997",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/index.ts": "9c6b645f96694f5d4725ebc63d7079292060da3ae55d4b004de4c901b421b3a3"
+  },
   "workspace": {
     "dependencies": [
       "jsr:@std/fs@^1.0.21",
