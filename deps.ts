@@ -1,2 +1,2 @@
 export * from 'https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/index.ts';
-export * from 'https://raw.githubusercontent.com/R0dn3yS/discord-music/2b6f430b804c914daf0baae2b096e8b7ddf107df/index.ts';
+export * from 'https://raw.githubusercontent.com/R0dn3yS/discord-music/a592ecc8bbe56fa91fbd5f17f85623ec98395c90/index.ts';
