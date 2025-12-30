@@ -3,7 +3,7 @@ import { Command, CommandContext } from '../../../deps.ts';
 import { shuffle } from '../../utils/shuffle.ts';
 import { db } from "../../index.ts";
 
-export default class TictactoeCommand extends Command {
+export default class PokerCommand extends Command {
   override name = 'poker';
   override category = 'games';
   override description = 'Play a game of poker with another player';
