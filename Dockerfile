@@ -8,7 +8,7 @@ COPY . .
 
 RUN deno cache src/index.ts
 
-RUN pacman -Sy yt-dlp ffmpeg --noconfirm
+RUN pacman -Sy yt-dlp yt-dlp-ejs ffmpeg --noconfirm
 RUN deno install
 
 CMD [ "deno", "run", "-A", "src/index.ts" ]
