@@ -142,6 +142,25 @@ client.on('messageCreate', message => {
   }
 });
 
+client.on('messageCreate', message => {
+  try {
+    if (message.author.bot || !client.owners.includes(message.member!.id)) return;
+
+    const mention = message.mentions.channels.first();
+
+    if (!mention || message.content !== `${mention.toString()}++` || !mention.isVoiceBased()) return;
+
+    const count = parseInt(mention.name.split(' ').pop()!);
+    const newName = mention.name.replace(count.toString(), (count + 1).toString());
+
+    mention.edit({ name: newName });
+
+    return message.channel.send(`Incremented ${mention.toString()}'s counter.`);
+  } catch (_e) {
+    console.log('Channel was probably not a counter.');
+  }
+});
+
 client.on('messageDelete', (message) => {
   const channel = message.channel as TextChannel;
 
