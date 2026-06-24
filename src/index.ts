@@ -162,6 +162,8 @@ client.on('messageCreate', message => {
 });
 
 client.on('messageDelete', (message) => {
+  if (message.author.bot) return;
+
   const channel = message.channel as TextChannel;
 
   if (channel.name === 'quotes' || channel.name === 'bot-spam') return;
@@ -183,6 +185,8 @@ client.on('messageDelete', (message) => {
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
+  if (message.author.bot) return;
+
   const channel = oldMessage.channel as TextChannel;
 
   if (channel.name === 'bot-spam') return;
