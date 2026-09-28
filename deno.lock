@@ -1,17 +1,24 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@r0dn3ys/mcsr-api@0.1": "0.1.0",
+    "jsr:@std/fs@*": "1.0.22",
     "jsr:@std/fs@1.0.21": "1.0.21",
     "jsr:@std/fs@^1.0.22": "1.0.22",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/path@^1.1.4": "1.1.4",
+    "npm:@discordjs/voice@*": "0.19.0",
     "npm:@discordjs/voice@0.18.0": "0.18.0",
     "npm:@discordjs/voice@0.19.0": "0.19.0",
     "npm:common-tags@1.8.2": "1.8.2",
+    "npm:discord.js@*": "14.25.1",
     "npm:discord.js@14.25.1": "14.25.1",
     "npm:dotenv@17.2.4": "17.2.4"
   },
   "jsr": {
+    "@r0dn3ys/mcsr-api@0.1.0": {
+      "integrity": "ff80e373288aec4d68b9e5a1567452d144fe2fe8b1140ba1caae896328c59335"
+    },
     "@std/fs@1.0.21": {
       "integrity": "d720fe1056d78d43065a4d6e0eeb2b19f34adb8a0bc7caf3a4dbf1d4178252cd",
       "dependencies": [
@@ -213,16 +220,28 @@
     "https://raw.githubusercontent.com/R0dn3yS/discord-music/6cd140fae68348df9c82772943c8b8df0769d4bd/classes/queue.ts": "48f3b4b359b606cf6fe8ff8c45d29db6d099a902c1fc79783aad29466b169a0a",
     "https://raw.githubusercontent.com/R0dn3yS/discord-music/6cd140fae68348df9c82772943c8b8df0769d4bd/classes/track.ts": "f12491e0e7650ec9ae478b15429e5c205d616f7f45091930d62189f62413435a",
     "https://raw.githubusercontent.com/R0dn3yS/discord-music/6cd140fae68348df9c82772943c8b8df0769d4bd/index.ts": "c6afe2f2af2a5b746e79fbff70b0c1038e20248600277a20cfc7542500d6c8c7",
+    "https://raw.githubusercontent.com/R0dn3yS/discord-music/refs/tags/0.1.0/classes/player.ts": "28991a69428831a950726455578a04427d79dd2a1aa3bbbf165810460a64c446",
+    "https://raw.githubusercontent.com/R0dn3yS/discord-music/refs/tags/0.1.0/classes/queue.ts": "cb8c5f80883599561070d3370056b07bd6766ad5725a212263383b9795405e54",
+    "https://raw.githubusercontent.com/R0dn3yS/discord-music/refs/tags/0.1.0/classes/track.ts": "9185c40e7be389d46e1310f3074df182bf4694dc45273c8eb5b51cb1739da7f9",
+    "https://raw.githubusercontent.com/R0dn3yS/discord-music/refs/tags/0.1.0/index.ts": "c6afe2f2af2a5b746e79fbff70b0c1038e20248600277a20cfc7542500d6c8c7",
     "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/command.ts": "b43c8191dd155b50bacc7055e87308d707ca777fcc27540bef2ae9953d8da34f",
     "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/commandclient.ts": "5f05cdbfdd7763d73f5fa15a9d803fb82ed87df7d12a7e916834751ba7d10b44",
     "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/commandcontext.ts": "b1e654801fc09e24cf39739f25d97b51a4bee552892d5cd22df859e76ea4ab6b",
     "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/commandsloader.ts": "6e587eb2eb25d1f42101ef373230f436b6a107af1456cb0cf269ab184c2f8d80",
     "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/classes/commandsmanager.ts": "cfa046132be7b1468f9f3e1922976d27b8a205a0e7381a2c03270fa889208593",
     "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/deps.ts": "600c4410702e30306d3299ea25f9374e1c9c3485f32ae6f3bb517012079df997",
-    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/index.ts": "9c6b645f96694f5d4725ebc63d7079292060da3ae55d4b004de4c901b421b3a3"
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/58cfcf2a9c7990109951f48f702f51e616be8c67/index.ts": "9c6b645f96694f5d4725ebc63d7079292060da3ae55d4b004de4c901b421b3a3",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/refs/tags/0.1.0/classes/command.ts": "b43c8191dd155b50bacc7055e87308d707ca777fcc27540bef2ae9953d8da34f",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/refs/tags/0.1.0/classes/commandclient.ts": "5f05cdbfdd7763d73f5fa15a9d803fb82ed87df7d12a7e916834751ba7d10b44",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/refs/tags/0.1.0/classes/commandcontext.ts": "b1e654801fc09e24cf39739f25d97b51a4bee552892d5cd22df859e76ea4ab6b",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/refs/tags/0.1.0/classes/commandsloader.ts": "6e587eb2eb25d1f42101ef373230f436b6a107af1456cb0cf269ab184c2f8d80",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/refs/tags/0.1.0/classes/commandsmanager.ts": "cfa046132be7b1468f9f3e1922976d27b8a205a0e7381a2c03270fa889208593",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/refs/tags/0.1.0/deps.ts": "600c4410702e30306d3299ea25f9374e1c9c3485f32ae6f3bb517012079df997",
+    "https://raw.githubusercontent.com/R0dn3yS/djs-commandclient/refs/tags/0.1.0/index.ts": "9c6b645f96694f5d4725ebc63d7079292060da3ae55d4b004de4c901b421b3a3"
   },
   "workspace": {
     "dependencies": [
+      "jsr:@r0dn3ys/mcsr-api@0.1",
       "jsr:@std/fs@^1.0.22",
       "npm:@discordjs/voice@0.19.0",
       "npm:common-tags@1.8.2",

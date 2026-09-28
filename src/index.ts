@@ -6,11 +6,14 @@ import { DatabaseSync } from 'node:sqlite';
 import { CommandClient, Player } from '../deps.ts'
 
 import { delay } from './utils/delay.ts';
+import { McsrClient } from "@r0dn3ys/mcsr-api";
+import { miliToMinutes } from "./utils/time.ts";
 
 config();
 
 let memberCount: number;
 let countChannel: VoiceBasedChannel;
+let mcsrChannel: TextChannel;
 
 const client = new CommandClient({
   prefix: Deno.env.get('PREFIX') ?? '\\',
@@ -33,7 +36,9 @@ client.commands.loader.loadDirectory('./src/commands', {
 export const player = new Player(client);
 export const db = new DatabaseSync(Deno.env.get('DB_PATH') ?? './sayu.db');
 
-client.once('clientReady', () => {
+export const mcsrClient = new McsrClient();
+
+client.once('clientReady', async () => {
   console.log(`${client.user?.username} is ready on ${client.guilds.cache.size} servers.`);
 
   client.user?.setPresence({
@@ -43,7 +48,8 @@ client.once('clientReady', () => {
     }],
   });
 
-  countChannel = client.channels.resolve('947819208518008874') as VoiceBasedChannel;
+  countChannel = client.channels.resolve('947819208518008874') as unknown as VoiceBasedChannel;
+  mcsrChannel = await client.channels.fetch('1554183150526271508') as unknown as TextChannel;
   memberCount = countChannel.guild.memberCount;
   countChannel.edit({ name: `Members: ${memberCount}` });
 });
@@ -75,7 +81,7 @@ client.once('clientReady', async () => {
 client.on('messageCreate', async message => {
   if (message.author.bot) return;
 
-  const channel = message.channel as TextChannel;
+  const channel = message.channel as unknown as TextChannel;
 
   if (channel.name === 'quotes') {
     const year = new Date().getFullYear().toString().substring(2);
@@ -162,14 +168,14 @@ client.on('messageCreate', message => {
 });
 
 client.on('messageDelete', (message) => {
-  if (message.author.bot) return;
+  if (message.author!.bot) return;
 
-  const channel = message.channel as TextChannel;
+  const channel = message.channel as unknown as TextChannel;
 
   if (channel.name === 'quotes' || channel.name === 'bot-spam') return;
   if (message.content!.length > 1000) return;
 
-  const dLog = message.guild?.channels.resolve('790787179663196191') as TextChannel;
+  const dLog = message.guild?.channels.resolve('790787179663196191') as unknown as TextChannel;
 
   const dEmbed = new EmbedBuilder()
     .setTitle('Deleted Message')
@@ -185,16 +191,16 @@ client.on('messageDelete', (message) => {
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
-  if (message.author.bot) return;
+  if (oldMessage.author!.bot) return;
 
-  const channel = oldMessage.channel as TextChannel;
+  const channel = oldMessage.channel as unknown as TextChannel;
 
   if (channel.name === 'bot-spam') return;
 
   if (oldMessage.content === newMessage.content) return;
   if (oldMessage.content!.length + newMessage.content!.length > 1000) return;
 
-  const eLog = oldMessage.guild?.channels.resolve('790792385889566751') as TextChannel;
+  const eLog = oldMessage.guild?.channels.resolve('790792385889566751') as unknown as TextChannel;
 
   const eEmbed = new EmbedBuilder()
     .setTitle('Edited Message')
@@ -233,5 +239,31 @@ player.audioPlayer.on(AudioPlayerStatus.Idle, async () => {
     player.nextInQueue();
   }
 });
+
+
+
+const _intervalId = setInterval(async () => {
+  const currentTimestamp = Math.floor(Temporal.Now.instant().epochMilliseconds / 1000);
+  const matchData = (await mcsrClient.getUserMatches('r0dn3ys', { sort: 'newest' }))[0];
+  console.log(matchData);
+
+  if (matchData.date >= currentTimestamp - 30 && matchData.forfeited !== true) {
+    const winnerUuid = matchData.result.uuid;
+    const winner = matchData.players[0].uuid === winnerUuid ? matchData.players[0] : matchData.players[1];
+
+    const matchEmbed = new EmbedBuilder()
+      .setTitle(`${matchData.players[0].nickname} vs ${matchData.players[1].nickname}`)
+      .setThumbnail(`https://api.mcheads.org/head/R0dn3yS/256`)
+      .setColor(0x6BA52A)
+      .setDescription(stripIndents`**Winner:** ${winner.nickname}
+        **Time:** ${miliToMinutes(matchData.result.time)}
+        **Seed type:** ${matchData.seed?.overworld}
+        **Nether:** ${matchData.seed?.nether}
+        \n[Match Url](https://mcsrranked.com/stats/R0dn3yS/${matchData.id})`)
+      .setTimestamp(matchData.date * 1000);
+
+    mcsrChannel.send({ embeds: [ matchEmbed ] });
+  }
+}, 10000);
 
 client.login(Deno.env.get('DISCORD_TOKEN'));
