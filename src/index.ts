@@ -264,6 +264,6 @@ const _intervalId = setInterval(async () => {
 
     mcsrChannel.send({ embeds: [ matchEmbed ] });
   }
-}, 10000);
+}, 30000);
 
 client.login(Deno.env.get('DISCORD_TOKEN'));
