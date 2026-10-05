@@ -5,7 +5,7 @@
   },
   "imports": {
     "@discordjs/voice": "npm:@discordjs/voice@0.19.0",
-    "@r0dn3ys/mcsr-api": "jsr:@r0dn3ys/mcsr-api@^0.1.0",
+    "@r0dn3ys/mcsr-api": "jsr:@r0dn3ys/mcsr-api@^0.1.8",
     "@std/fs": "jsr:@std/fs@^1.0.22",
     "common-tags": "npm:common-tags@1.8.2",
     "discord.js": "npm:discord.js@14.25.1",

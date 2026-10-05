@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@r0dn3ys/mcsr-api@0.1": "0.1.0",
+    "jsr:@r0dn3ys/mcsr-api@~0.1.8": "0.1.8",
     "jsr:@std/fs@*": "1.0.22",
     "jsr:@std/fs@1.0.21": "1.0.21",
     "jsr:@std/fs@^1.0.22": "1.0.22",
@@ -16,8 +16,8 @@
     "npm:dotenv@17.2.4": "17.2.4"
   },
   "jsr": {
-    "@r0dn3ys/mcsr-api@0.1.0": {
-      "integrity": "ff80e373288aec4d68b9e5a1567452d144fe2fe8b1140ba1caae896328c59335"
+    "@r0dn3ys/mcsr-api@0.1.8": {
+      "integrity": "15594f562d14dee6fdcc48f333fe926dba07a62a623c3a242da50a7e0bb6a15e"
     },
     "@std/fs@1.0.21": {
       "integrity": "d720fe1056d78d43065a4d6e0eeb2b19f34adb8a0bc7caf3a4dbf1d4178252cd",
@@ -241,7 +241,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@r0dn3ys/mcsr-api@0.1",
+      "jsr:@r0dn3ys/mcsr-api@~0.1.8",
       "jsr:@std/fs@^1.0.22",
       "npm:@discordjs/voice@0.19.0",
       "npm:common-tags@1.8.2",
