@@ -10,5 +10,8 @@
     "common-tags": "npm:common-tags@1.8.2",
     "discord.js": "npm:discord.js@14.25.1",
     "dotenv": "npm:dotenv@17.2.4"
+  },
+  "fmt": {
+    "singleQuote": true
   }
 }

@@ -4,10 +4,9 @@ import { config } from 'dotenv';
 import { stripIndents } from 'common-tags';
 import { DatabaseSync } from 'node:sqlite';
 import { CommandClient, Player } from '../deps.ts'
-
 import { delay } from './utils/delay.ts';
-import { McsrClient } from "@r0dn3ys/mcsr-api";
-import { miliToMinutes } from "./utils/time.ts";
+import { McsrClient } from '@r0dn3ys/mcsr-api';
+import { checkMcsrMatches } from './intervals/mcsrMatchChecker.ts';
 
 config();
 
@@ -240,30 +239,8 @@ player.audioPlayer.on(AudioPlayerStatus.Idle, async () => {
   }
 });
 
-
-
-const _intervalId = setInterval(async () => {
-  const currentTimestamp = Math.floor(Temporal.Now.instant().epochMilliseconds / 1000);
-  const matchData = (await mcsrClient.getUserMatches('r0dn3ys', { sort: 'newest' }))[0];
-  console.log(matchData);
-
-  if (matchData.date >= currentTimestamp - 30 && matchData.forfeited !== true) {
-    const winnerUuid = matchData.result.uuid;
-    const winner = matchData.players[0].uuid === winnerUuid ? matchData.players[0] : matchData.players[1];
-
-    const matchEmbed = new EmbedBuilder()
-      .setTitle(`${matchData.players[0].nickname} vs ${matchData.players[1].nickname}`)
-      .setThumbnail(`https://api.mcheads.org/head/R0dn3yS/256`)
-      .setColor(0x6BA52A)
-      .setDescription(stripIndents`**Winner:** ${winner.nickname}
-        **Time:** ${miliToMinutes(matchData.result.time)}
-        **Seed type:** ${matchData.seed?.overworld}
-        **Nether:** ${matchData.seed?.nether}
-        \n[Match Url](https://mcsrranked.com/stats/R0dn3yS/${matchData.id})`)
-      .setTimestamp(matchData.date * 1000);
-
-    mcsrChannel.send({ embeds: [ matchEmbed ] });
-  }
+setInterval(async () => {
+  await checkMcsrMatches(mcsrClient, mcsrChannel, [ 'R0dn3yS', 'Aqua_Hoshino' ]);
 }, 30000);
 
 client.login(Deno.env.get('DISCORD_TOKEN'));
