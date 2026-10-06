@@ -4,10 +4,13 @@ import { EmbedBuilder, TextChannel } from 'discord.js';
 import { miliToMinutes } from '../utils/time.ts';
 
 export async function checkMcsrMatches(mcsrClient: McsrClient, channel: TextChannel, players: string[]) {
+  const matchIDs: number[] = [];
+
   for (const player of players) {
     const currentTimestamp = Math.floor(Temporal.Now.instant().epochMilliseconds / 1000);
     const matchData = (await mcsrClient.getUserMatches(player, { sort: 'newest' }))[0];
-    console.log(matchData);
+    
+    if (matchIDs.includes(matchData.id)) continue;
 
     if (matchData.date >= currentTimestamp - 30 && matchData.forfeited !== true) {
       const winnerUuid = matchData.result.uuid;
@@ -24,6 +27,7 @@ export async function checkMcsrMatches(mcsrClient: McsrClient, channel: TextChan
           \n[Match Url](https://mcsrranked.com/stats/${player}/${matchData.id})`)
         .setTimestamp(matchData.date * 1000);
 
+      matchIDs.push(matchData.id)
       channel.send({ embeds: [ matchEmbed ] });
     }
   }
