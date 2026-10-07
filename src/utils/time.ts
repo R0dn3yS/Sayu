@@ -17,7 +17,7 @@ export function miliToMinutes(time: number): string {
   let seconds = ((time % 60000) / 1000).toFixed(0);
 
   if (seconds === '60') {
-    seconds = '00';
+    seconds = '0';
     minutes++;
   }
 
