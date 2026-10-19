@@ -36,7 +36,7 @@ export default class BalatroCommand extends Command {
     switch (searchType) {
       case 'jokers':
       case 'joker': {
-        const jokers: Description[] = JSON.parse(Deno.readTextFileSync('./jokers.json'));
+        const jokers: Description[] = JSON.parse(Deno.readTextFileSync(`${Deno.cwd()}/balatro.json`));
 
         const description = getDescription(jokers, searchString);
         if (description) ctx.channel.send(description);
