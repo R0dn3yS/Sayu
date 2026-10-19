@@ -7,6 +7,7 @@
     "jsr:@std/fs@^1.0.22": "1.0.22",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/path@^1.1.4": "1.1.4",
+    "jsr:@ys319/fuzzy-search@0.2": "0.2.0",
     "npm:@discordjs/voice@*": "0.19.0",
     "npm:@discordjs/voice@0.18.0": "0.18.0",
     "npm:@discordjs/voice@0.19.0": "0.19.0",
@@ -41,6 +42,9 @@
       "dependencies": [
         "jsr:@std/internal"
       ]
+    },
+    "@ys319/fuzzy-search@0.2.0": {
+      "integrity": "625f2542ff8806afb68f99a3e9457660a678ec44086fbd28cc026887230c4de6"
     }
   },
   "npm": {
@@ -243,6 +247,7 @@
     "dependencies": [
       "jsr:@r0dn3ys/mcsr-api@~0.1.8",
       "jsr:@std/fs@^1.0.22",
+      "jsr:@ys319/fuzzy-search@0.2",
       "npm:@discordjs/voice@0.19.0",
       "npm:common-tags@1.8.2",
       "npm:discord.js@14.25.1",
