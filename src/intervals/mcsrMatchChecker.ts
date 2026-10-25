@@ -8,7 +8,7 @@ export async function checkMcsrMatches(mcsrClient: McsrClient, channel: TextChan
 
   for (const player of players) {
     const currentTimestamp = Math.floor(Temporal.Now.instant().epochMilliseconds / 1000);
-    const matchData = (await mcsrClient.getUserMatches(player, { sort: 'newest', type: 2 }))[0];
+    const matchData = (await mcsrClient.getUserMatches(player, { sort: 'newest' }))[0];
 
     if (!matchData) return;
 
