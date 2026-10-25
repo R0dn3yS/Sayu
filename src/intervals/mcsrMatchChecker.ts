@@ -10,6 +10,8 @@ export async function checkMcsrMatches(mcsrClient: McsrClient, channel: TextChan
     const currentTimestamp = Math.floor(Temporal.Now.instant().epochMilliseconds / 1000);
     const matchData = (await mcsrClient.getUserMatches(player, { sort: 'newest', type: 2 }))[0];
 
+    if (!matchData) return;
+
     try {
       if (matchIDs.includes(matchData.id)) continue;
 
