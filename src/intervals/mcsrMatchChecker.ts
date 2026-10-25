@@ -9,26 +9,31 @@ export async function checkMcsrMatches(mcsrClient: McsrClient, channel: TextChan
   for (const player of players) {
     const currentTimestamp = Math.floor(Temporal.Now.instant().epochMilliseconds / 1000);
     const matchData = (await mcsrClient.getUserMatches(player, { sort: 'newest', type: 2 }))[0];
-    
-    if (matchIDs.includes(matchData.id)) continue;
 
-    if (matchData.date >= currentTimestamp - 30 && matchData.forfeited !== true) {
-      const winnerUuid = matchData.result.uuid;
-      const winner = matchData.players[0].uuid === winnerUuid ? matchData.players[0] : matchData.players[1];
+    try {
+      if (matchIDs.includes(matchData.id)) continue;
 
-      const matchEmbed = new EmbedBuilder()
-        .setTitle(`${matchData.players[0].nickname} vs ${matchData.players[1].nickname}`)
-        .setThumbnail(`https://api.mcheads.org/head/${winner.nickname}/256`)
-        .setColor(0x6BA52A)
-        .setDescription(stripIndents`**Winner:** ${winner.nickname}
-          **Time:** ${miliToMinutes(matchData.result.time)}
-          **Seed type:** ${matchData.seed?.overworld}
-          **Nether:** ${matchData.seed?.nether}
-          \n[Match Url](https://mcsrranked.com/stats/${player}/${matchData.id})`)
-        .setTimestamp(matchData.date * 1000);
+      if (matchData.date >= currentTimestamp - 30 && matchData.forfeited !== true) {
+        const winnerUuid = matchData.result.uuid;
+        const winner = matchData.players[0].uuid === winnerUuid ? matchData.players[0] : matchData.players[1];
 
-      matchIDs.push(matchData.id)
-      channel.send({ embeds: [ matchEmbed ] });
+        const matchEmbed = new EmbedBuilder()
+          .setTitle(`${matchData.players[0].nickname} vs ${matchData.players[1].nickname}`)
+          .setThumbnail(`https://api.mcheads.org/head/${winner.nickname}/256`)
+          .setColor(0x6BA52A)
+          .setDescription(stripIndents`**Winner:** ${winner.nickname}
+            **Time:** ${miliToMinutes(matchData.result.time)}
+            **Seed type:** ${matchData.seed?.overworld}
+            **Nether:** ${matchData.seed?.nether}
+            \n[Match Url](https://mcsrranked.com/stats/${player}/${matchData.id})`)
+          .setTimestamp(matchData.date * 1000);
+
+        matchIDs.push(matchData.id)
+        channel.send({ embeds: [ matchEmbed ] });
+      }
+    } catch (e) {
+      console.log(e);
+      console.log(matchData);
     }
   }
 }
